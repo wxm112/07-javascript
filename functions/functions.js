@@ -5,16 +5,26 @@ var tellForturne = function(numChildren, partnerName, geoLocations, job) {
 tellForturne(4, 'Hooch', 'Seattle', 'Umdertaker');
 
 var ageCalculator = function(currentYear, birthYear) {
-  console.log("They are either " + (currentYear - birthYear) + " or " + (currentYear - birthYear - 1));
+  var postBirthdayAge = currentYear - birthYear;
+  var preBirthdayAge = currentYear - birthYear - 1; 
+  console.log("They are either " + postBirthdayAge + " or " + preBirthdayAge);
 }
 
 ageCalculator(2015, 1983)
 
+var ageCalculatorDynamic = function(birthYear) {
+  var currentYear = (new Date()).getFullYear();
+  var postBirthdayAge = currentYear - birthYear;
+  var preBirthdayAge = currentYear - birthYear - 1; 
+  console.log("They are either " + postBirthdayAge + " or " + preBirthdayAge);
+}
+
+ageCalculatorDynamic(1983)
 
 var lifetimeSupply = function(currentAge, maximumAge, perDay){
   var yearTOGo = maximumAge - currentAge;
-  var perYear = perDay * 365;
-  var sum = yearTOGo * perYear;
+  var perYear = perDay * 365.25;
+  var sum = parseInt(yearTOGo * perYear);
   console.log("You will need " + sum + " to last you until the ripe old age of " + maximumAge + ".");
 }
 
