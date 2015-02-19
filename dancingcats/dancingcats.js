@@ -13,3 +13,25 @@ function catWalk() {
 function startCatWalk() {
   catTimer = window.setInterval(catWalk, delayMs);
 }
+
+function speedCatWalk() {
+  movePixels += 10;
+}
+
+function stopCatWalk() {
+  window.clearInterval(catTimer);
+}
+
+
+
+var startButton = document.getElementById('start-button');
+startButton.addEventListener('click', startCatWalk, false);
+
+var speedButton = document.getElementById('speed-button');
+speedButton.addEventListener('click', speedCatWalk, false)
+
+var stopButton = document.getElementById('stop-button');
+stopButton.addEventListener('click', stopCatWalk, false);
+
+
+
