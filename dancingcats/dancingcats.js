@@ -1,13 +1,21 @@
 
-var movePixels = 10;
-var delayMs = 50;
+var movePixels = 1;
+var delayMs = 5;
 var catTimer = null;
+
+var direction = 1;
+
 function catWalk() {
   var img = document.getElementsByTagName('img')[0];
   var currentLeft = parseInt(img.style.left);
-  img.style.left = (currentLeft + movePixels) + 'px';
+  img.style.left = (currentLeft + (movePixels * direction)) + 'px';
   if (currentLeft > (window.innerWidth-img.width)) {
-    img.style.left = '0px';
+    img.style.transform = 'scaleX(-1)';
+    direction = -1;
+  }
+  if (currentLeft <= 0) {
+    img.style.transform = 'scaleX(1)';
+    direction = 1;
   }
 }
 function startCatWalk() {
