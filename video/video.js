@@ -22,9 +22,16 @@
 //   }
 
 
-$('a').each(function(i) {
-  var links = $('a');
-  var thumbnailUrl = youtube.generateThumbnailUrl(links[i].href)
-  var img = $("<img src='" + thumbnailUrl +"'>");
-  $(links[i]).append(img);
+// $('a').each(function(i) {
+//   var links = $('a');
+//   var thumbnailUrl = youtube.generateThumbnailUrl(links[i].href)
+//   var img = $("<img src='" + thumbnailUrl +"'>");
+//   $(links[i]).append(img);
+// });
+
+var $links = $('a');
+
+$links.each(function(i, elem) {
+  var thumbnailUrl = youtube.generateThumbnailUrl(elem.href)
+  $('<img>', {src: thumbnailUrl}).appendTo(elem);
 });
