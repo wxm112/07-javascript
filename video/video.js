@@ -10,13 +10,21 @@
 //   }
 
 
-var links = document.querySelectorAll('a');
+// var links = document.querySelectorAll('a');
 
-for (var i = 0; i < links.length; i++) {
-  var link = links[i]
-  var href = link.getAttribute('href');
-  var thumbnailUrl = youtube.generateThumbnailUrl(href);
-  var img = document.createElement('img');
-  img.setAttribute('src', thumbnailUrl);
-  link.appendChild(img);
-  }
+// for (var i = 0; i < links.length; i++) {
+//   var link = links[i]
+//   var href = link.getAttribute('href');
+//   var thumbnailUrl = youtube.generateThumbnailUrl(href);
+//   var img = document.createElement('img');
+//   img.setAttribute('src', thumbnailUrl);
+//   link.appendChild(img);
+//   }
+
+
+$('a').each(function(i) {
+  var links = $('a');
+  var thumbnailUrl = youtube.generateThumbnailUrl(links[i].href)
+  var img = $("<img src='" + thumbnailUrl +"'>");
+  $(links[i]).append(img);
+});
