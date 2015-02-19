@@ -1,5 +1,5 @@
 
-var movePixels = 1;
+var movePixelsX = 1;
 var delayMs = 5;
 var catTimer = null;
 var div = document.getElementById('info');
@@ -14,19 +14,31 @@ function flipCat(img) {
 
 function shiftCat(img) {
   var currentLeft = parseInt(img.style.left);
-  if(img.direction === undefined) {
-    img.direction = 1;
+  var currentTop = parseInt(img.style.top);
+  var movePixelsY = parseInt(img.attributes['data-move-y'].value);
+  if(img.directionX === undefined) {
+    img.directionX = 1;
   }
-
-  img.style.left = (currentLeft + (movePixels * img.direction)) + 'px';
+  if(img.directionY === undefined) {
+    img.directionY = 1;
+  }
+  img.style.left = (currentLeft + (movePixelsX * img.directionX)) + 'px';
+  img.style.top = (currentTop + (movePixelsY * img.directionY)) + 'px';
   if (currentLeft > (window.innerWidth-img.width)) {
     flipCat(img);
-    img.direction = -1;
+    img.directionX = -1;
   }
   if (currentLeft <= 0) {
     flipCat(img);
-    img.direction = 1;
+    img.directionX = 1;
   }
+  if (currentTop <= -10) {
+    img.directionY = -1
+  }
+  if (currentTop > (window.innerHeight-img.height)) {
+    img.directionY = 1
+  }
+
 }
 
 function catWalk() {
@@ -38,12 +50,12 @@ function catWalk() {
 
 function startCatWalk() {
   stopCatWalk();
-  movePixels = 1;
+  movePixelsX = 1;
   catTimer = window.setInterval(catWalk, delayMs);
 }
 
 function speedCatWalk() {
-  movePixels += 10;
+  movePixelsX += 10;
 }
 
 function stopCatWalk() {
