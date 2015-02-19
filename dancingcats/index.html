@@ -4,23 +4,22 @@
   <meta charset="utf-8" />
   <title>Cat Walk</title>
  </head>
- <body>
+ <body style = "background-image: url('http://cropredypreschool.org.uk/cps-2014/wp-content/uploads/2014/04/garden-cartoon-background.jpg');">
   
   <button id="start-button">Start</button>
   <button id="speed-button">Go Faster!</button>
   <button id="stop-button">Stop</button>
   <div id="info"></div>
+  <iframe width="0" height="0" src="https://www.youtube.com/embed/17XEQ2PyHtM?autoplay=1" frameborder="0"></iframe>
   
-  <img style="position:absolute; left: 0px; top: 80px;" src="http://www.anniemation.com/clip_art/images/cat-walk.gif">
+  <img class = 'main' style="position:absolute; left: 300px; top: 100px; transform: scaleX(-1); width: 296px " src="http://media.giphy.com/media/U4HMECFlvl3W/giphy.gif">
+  <img class = 'main' style="transform: scaleX(1); position:absolute; left: 1px; top: 300px;" src="http://www.anniemation.com/clip_art/images/cat-walk.gif">
+  <img class = 'main' style="transform: scaleX(1); position:absolute; left: 1px; top: 560px; width: 296px;" src="http://www.animatedgif.net/animals/cats/hello_kitty_e0.gif">
 
-  <article>
-<p>Add an event listener to the start button, so that the cat starts moving across the screen when its clicked.
-<p>Add an event listener to the stop button, so that the cat stops moving when clicked.
-<p>Add an event listener to the speed button, so that the cat moves faster when it's clicked. 
-<p>When the cat reaches the edge of the screen, have her walk back to the start. Repeat forever.
-<p>Make sure your code works even when the screen is resized (you will need to find the window width with Javascript.
-<p>BONUS: When the cat reaches half way, have her stop and replace the image with a dancing cat gif for a moment, then resume.
-  </article>
+
+
+  
+  
 
  </body>
  <script src='dancingcats.js'></script>
