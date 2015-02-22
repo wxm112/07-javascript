@@ -4,15 +4,6 @@ var route = {
           line6: ['grand central', '33rd', '28th', '23rd', 'union square', 'astor place']
         },
 
-  checkLine: function(startLine, endLine) {
-    if (this.lines[startLine] === undefined) {
-      return "There is no such start line: " + startLine;
-    } else if (this.lines[endLine] === undefined) {
-      return "There is no such end line: " + endLine;
-    } 
-    return (startLine === endLine);
-  },
-
   sameLineStations: function(line,statStation,endStation){
     var statStationIndex = this.lines[line].indexOf(statStation);
     var endStationIndex = this.lines[line].indexOf(endStation);
@@ -35,18 +26,14 @@ var route = {
   },
 
   result: function(startLine,statStation,endLine,endStation) {
-    var check = this.checkLine(startLine,endLine)
-    if (check === true) {
+    if (startLine === endLine) {
       var stations = this.sameLineStations(startLine, statStation,endStation);
-    } else if (check === false) {
+    } else{
         var stations = this.diffLineStations(startLine, statStation,endLine,endStation);
-    } else {
-        return check;
-    }
+    } 
     var numberOfStations = stations.length;
     var stationsList = stations.join(",");
-    return "There are " + numberOfStations + " stations. " + "They are: " + stationsList + ".";
-    
+    return "There are " + numberOfStations + " stations. " + "They are: " + stationsList + "."; 
   }
 };
 
@@ -89,11 +76,10 @@ console.log("Test 3: " + route.result('lineL', '8th', 'lineL', '1st'));
 console.log("Test 4: " + route.result('lineL', '1st', 'lineL', '8th'));
 console.log("Test 5: " + route.result('line6', 'grand central', 'line6', '23rd'));
 console.log("Test 6: " + route.result('line6', 'astor place', 'line6', '23rd'));
-console.log("Test 7: " + route.result('line4', 'iii', 'lineL', '1st'));
-console.log("Test 8: " + route.result('lineN', '8th', 'lineL', '1st'));
-console.log("Test 9: " + route.result('line6', 'astor place', 'lineL', '1st'));
-console.log("Test 10: " + route.result('lineN', 'times square', 'line6', 'grand central'));
-console.log("Test 11: " + route.result('lineL', '3rd', 'lineN', '34th'));
+console.log("Test 7: " + route.result('lineN', '8th', 'lineL', '1st'));
+console.log("Test 8: " + route.result('line6', 'astor place', 'lineL', '1st'));
+console.log("Test 9: " + route.result('lineN', 'times square', 'line6', 'grand central'));
+console.log("Test 10: " + route.result('lineL', '3rd', 'lineN', '34th'));
 
 
 
