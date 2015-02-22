@@ -1,0 +1,11 @@
+select {
+  width: 200px;
+}
+
+.form {
+  padding: 1em; 
+}
+
+#submit {
+  margin: 1em;
+}

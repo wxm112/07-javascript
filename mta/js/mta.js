@@ -6,14 +6,11 @@ var route = {
 
   checkLine: function(startLine, endLine) {
     if (this.lines[startLine] === undefined) {
-      return "There is no such line: " + startLine;
+      return "There is no such start line: " + startLine;
     } else if (this.lines[endLine] === undefined) {
-      return "There is no such line: " + endLine;
-    } else if (startLine === endLine) {
-        return true;
-    } else {
-       return false;
-    }
+      return "There is no such end line: " + endLine;
+    } 
+    return (startLine === endLine);
   },
 
   sameLineStations: function(line,statStation,endStation){
@@ -21,12 +18,10 @@ var route = {
     var endStationIndex = this.lines[line].indexOf(endStation);
     if (statStationIndex < endStationIndex){
       var endIndex = endStationIndex + 1;
-      var stations = this.lines[line].slice(statStationIndex, endIndex);
-      return stations
+      return this.lines[line].slice(statStationIndex, endIndex);
     } else {
         var endIndex = statStationIndex + 1;
-        var stations = this.lines[line].slice(endStationIndex, endIndex);
-        return stations.reverse();
+        return this.lines[line].slice(endStationIndex, endIndex).reverse();
     }
   },
 
@@ -36,7 +31,7 @@ var route = {
     var stations = firstPartStations.concat(secondPartStations);
     var index = stations.indexOf("union square");
     var removeExtraStation =  stations.splice(index,1);
-    return stations
+    return stations;
   },
 
   result: function(startLine,statStation,endLine,endStation) {
@@ -50,10 +45,43 @@ var route = {
     }
     var numberOfStations = stations.length;
     var stationsList = stations.join(",");
-    return "There are " + numberOfStations + " stations. " + "They are: " + stationsList + ".";ccccccdcdihvvdndttvdctellkrkiffrebjjvvbgtulc
+    return "There are " + numberOfStations + " stations. " + "They are: " + stationsList + ".";
     
   }
 };
+
+
+
+$(document).ready(function () {
+  var menu = function () {
+    var hash = route.lines
+    $.each(hash, function(key, value) {
+      var $group = $("<optgroup class='startGroup'/>").attr("label",key);
+      $group.val(key);
+      $.each(value, function (i, station) {
+        var $option = $("<option class='engingGroup'/>");
+        $option.text(station);
+        $group.append($option);
+      });
+      $group.appendTo('.select');
+    });
+  };
+  menu();
+
+  var ruteRusult = function() {
+    var $startStation = $("#start_point option:selected").val();
+    var $startLine =$("#start_point option:selected").parent().attr('label');
+    var $engingStation = $("#ending_point option:selected").val();
+    var $endingLine =$("#ending_point option:selected").parent().attr('label');
+    var $result = route.result($startLine, $startStation,$endingLine,$engingStation);
+    $('#result').text($result);
+  }
+
+  $('#submit').on("click", ruteRusult);
+
+});
+
+
 
 console.log("Test 1: " + route.result('lineN', '8th', 'lineN', 'times square'));
 console.log("Test 2: " + route.result('lineN', '28th', 'lineN', '8th'));
